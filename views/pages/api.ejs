@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+<div>
+<form action="/store-sentences" method="post">
+	<div>
+		<select name="msgtype">
+			<option value="twitter">Scan Twitter</option>
+			<option value="sentence">Write Your Own Thoughts</option>
+		</select>
+	</div>
+	<div>
+		<textarea name="msg" class="grey-text" cols="24" rows="5" autofocus maxlength="1000" required="true">Please write in a twitter hastag</textarea>
+	</div>
+	<div>
+		<button type="submit" value="save" class="submit">SUBMIT</button>		
+	</div>
+</form>
+</div>
+<% include ../partials/footer %>
