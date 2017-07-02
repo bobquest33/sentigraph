@@ -17,29 +17,18 @@ exports.createContract = function(){
 	return contractInstance;
 };
 
-exports.setData = function(data) {
-	var d = lib.getDateForNames(),
-		num;
+exports.setData = function(data, q) {
+	var num = lib.getDateForNames();
 
-	if(month < 10) {
-		month = "0" + month.toString();
-	} 
-
-	if(date < 10) {
-		date = "0" + date.toString();
-	}
-
-	if(hours < 10) {
-		hours = "0" + hours.toString();
-	}
-
-	num = year.toString() + month.toString() + date.toString() + hours.toString();
-	contractInstance.addRecord(parseInt(num), data,  2, {from: web3.eth.accounts[0]});
+console.log(num);
+console.log(data);
+	contractInstance.addRecord(parseInt(num), q.toString(), {from: web3.eth.accounts[0]});
 };
 
 exports.getData = function(num) {
 var x = contractInstance.searchRecords(parseInt(num));
 console.log(x[0]);
 console.log(x[1].toLocaleString());
+console.log(x[2].toLocaleString());
 return "test";
 };
