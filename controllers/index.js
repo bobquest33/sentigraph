@@ -44,6 +44,6 @@ res.render('pages/index');
 
 
 exports.api = function(req, res) {
-	res.render('pages/api');
+	res.render('pages/api', {scripts : ['api']});
 }
 

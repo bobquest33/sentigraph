@@ -1,0 +1,36 @@
+body {
+	font-family: Verdana;
+	color: black;
+	font-size: 14px;
+}
+
+select {
+	font-size: 1em;
+}
+
+textarea { 
+	font-size: 2em;
+}
+button {
+	border-radius: 5px;
+	font-size: 2em;
+}
+
+select[name=msgtype] {
+	margin-bottom: 20px;
+}
+
+.content {
+	text-align: center;
+}
+.submit {
+	width: 200px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+.grey-text {
+	color: lightgray;
+}
+
+
