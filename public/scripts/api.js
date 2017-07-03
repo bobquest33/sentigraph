@@ -28,4 +28,16 @@ $(document).ready(function(){
 		}
 	});
 
+	$('textarea[name="msg"]').change(function(){ 
+		if(this.value === twtmsg || this.value === normsg) { 
+			return;
+		}  
 
+		this.value = this.value.split(' ').map(function(item){ 
+			console.log(item);
+			if(item.replace(/\s+/g, '') !== "" && !/^#/g.test(item)) { 
+				return '#' + item; 
+			}  
+		}).join(' '); 
+	});
+});

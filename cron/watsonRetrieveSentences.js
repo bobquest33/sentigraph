@@ -6,7 +6,7 @@ const lib = require(__dirname + "/../models/functions.js");
 var date = lib.getDateForNames(-2);
 
 mongo.run(function(db){
-	var col = db.collection('sentences' + date),
+	var col = db.collection('sentences17070302'),
 	text = "";
 
 	col.find({}).toArray(function(err, docs) {
@@ -32,7 +32,7 @@ function storeWatsonData(text) {
 			var col = db.collection('watsondata' + date);
 			col.insertOne({data : insert, dateAdded : new Date()}, function(err, result){
 				if(err) { throw err; }
-
+				setTimeout(function(){ process.exit(); }, 10000);
 			});
 		});
 	}); 

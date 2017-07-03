@@ -6,7 +6,7 @@ var date = lib.getDateForNames(-3);
 
 mongo.run(function(db){
 //	var col = db.collection('watsondata' + date);
-	var col = db.collection('watsondata17070119');
+	var col = db.collection('watsondata17070301');
 	col.find({}).toArray(function(err, docs) {
 		var tones =  { 
 			anger: 0,
@@ -18,14 +18,24 @@ mongo.run(function(db){
 		total = 0;
 
 		docs.forEach(function(item){
-			item.data.map(function(item2) { 
-				item2.emotion_tone.forEach(function(item3){
+			item.data.forEach(function(item2) { 
+				var item3 = null;
+				if(typeof item2.emotion_tone === "undefined" || item2.emotion_tone === null) {
+					return;
+				}
+
+				for(var j = 0; j < item2.emotion_tone.length; j++) {
+					if(typeof item2.emotion_tone[j] === "undefined") {
+						return;
+					}
+					
+					item3 = item2.emotion_tone[j];
 					for(var i in tones) {
 						if(typeof item3[i] !== "undefined") {
 							tones[i] += parseFloat(item3[i]);	
 						}
 					}
-				});
+				}
 
 				if(item2.emotion_tone.length > 0) {
 					total++;
@@ -41,7 +51,7 @@ mongo.run(function(db){
 		
 		eth.createContract();
 		eth.setData(JSON.stringify(tones), q);
-		console.log(tones, q);
+		setTimeout(function(){ process.exit(); } , 15000);
 	});
 });
 

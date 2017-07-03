@@ -14,7 +14,7 @@ exports.store_sentences = function(req, res){
 
 	switch(msgtype) {
 		case 'twitter':
-			colname = "twitter" + lib.getDateForNames();
+			colname = "twitterhastags";
 			break;
 		default:
 			colname = "sentences" + lib.getDateForNames();
@@ -23,10 +23,9 @@ exports.store_sentences = function(req, res){
 	
 	mongo.run(function(db){
 		var col = db.collection(colname);
-		col.insertOne({data: msg, dateAdded: new Date()}, function(err, result){
+		col.insertOne({data: msg, dateAdded: new Date(), since_id : 0}, function(err, result){
 			if(err) { throw err; }
 			
-console.log(result);
 			res.redirect('/api');
 		});	
 	});
